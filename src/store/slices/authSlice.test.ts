@@ -67,13 +67,13 @@ describe('authSlice login thunk', () => {
   it('should dispatch login.pending and login.fulfilled on success', async () => {
     const fakeToken = 'fake-token';
     const fakeUser = { id: '1', name: 'John Doe', email: 'john@example.com', avatar: 'avatar.png' };
-    
+
     // Mocking authApi
     (authApi.login as any).mockResolvedValue({ data: { token: fakeToken } });
     (authApi.getMe as any).mockResolvedValue({ data: { user: fakeUser } });
 
     await store.dispatch(login({ email: 'test@test.com', password: 'password123' }));
-    
+
     const state = store.getState().auth;
     expect(state.loading).toBe(false);
     expect(state.user).toEqual(fakeUser);
@@ -87,7 +87,7 @@ describe('authSlice login thunk', () => {
     (authApi.login as any).mockRejectedValue(new Error(errorMessage));
 
     await store.dispatch(login({ email: 'wrong@test.com', password: 'wrongpassword' }));
-    
+
     const state = store.getState().auth;
     expect(state.loading).toBe(false);
     expect(state.error).toBe(errorMessage);

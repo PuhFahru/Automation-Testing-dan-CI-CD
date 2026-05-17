@@ -48,7 +48,7 @@ describe('Login Flow E2E', () => {
     cy.get('button').contains('Masuk').click();
 
     cy.wait('@loginRequest');
-    
-    cy.url().should('eq', Cypress.config().baseUrl + '/');
+
+    cy.url().should('eq', `${Cypress.config().baseUrl  }/`);
   });
 });

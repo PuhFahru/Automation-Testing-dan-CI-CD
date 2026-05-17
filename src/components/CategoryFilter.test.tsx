@@ -6,7 +6,7 @@ import CategoryFilter from './CategoryFilter';
 
 describe('CategoryFilter component', () => {
   const mockCategories = ['React', 'TypeScript', 'Testing'];
-  
+
   it('should render correctly with categories', () => {
     render(
       <CategoryFilter
@@ -17,10 +17,10 @@ describe('CategoryFilter component', () => {
         onSearchChange={vi.fn()}
       />
     );
-    
+
     expect(screen.getByText(/Semua/i)).toBeInTheDocument();
-    
-    mockCategories.forEach(category => {
+
+    mockCategories.forEach((category) => {
       expect(screen.getByText(category)).toBeInTheDocument();
     });
   });
@@ -36,10 +36,10 @@ describe('CategoryFilter component', () => {
         onSearchChange={vi.fn()}
       />
     );
-    
+
     const reactButton = screen.getByText('React');
     await userEvent.click(reactButton);
-    
+
     expect(onSelectMock).toHaveBeenCalledWith('React');
   });
 
@@ -54,12 +54,12 @@ describe('CategoryFilter component', () => {
         onSearchChange={onSearchChangeMock}
       />
     );
-    
+
     const searchInput = screen.getByPlaceholderText('Cari thread...');
-    
+
     await userEvent.type(searchInput, 'hello world');
     fireEvent.submit(searchInput);
-    
+
     expect(onSearchChangeMock).toHaveBeenCalledWith('hello world');
   });
 });

@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# Forum Diskusi App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi Forum Diskusi berbasis web yang dibangun menggunakan React, TypeScript, dan Vite. Proyek ini merupakan submission untuk kelas React Expert di Dicoding, dengan fokus pada implementasi fitur lanjutan seperti Automation Testing dan CI/CD.
 
-Currently, two official plugins are available:
+## Fitur Utama
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Autentikasi pengguna (Login & Register)
+- Melihat daftar thread diskusi dan detailnya
+- Filter thread berdasarkan kategori
+- Membuat thread baru
+- Fitur Leaderboard untuk melihat pengguna paling aktif
+- Menggunakan Redux Toolkit untuk state management
+- Styling modern menggunakan Tailwind CSS
+- Automation Testing komprehensif (Unit Test, Integration Test, dan E2E Test)
+- Pipeline CI/CD terotomatisasi menggunakan GitHub Actions dan Netlify
 
-## React Compiler
+## Cara Menjalankan Aplikasi Lokal
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Pastikan Anda sudah menginstal Node.js di komputer Anda. Ikuti langkah-langkah berikut:
 
-## Expanding the ESLint configuration
+1. Clone repositori ini:
+   ```bash
+   git clone https://github.com/PuhFahru/Automation-Testing-dan-CI-CD.git
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. Masuk ke direktori proyek:
+   ```bash
+   cd Automation-Testing-dan-CI-CD
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. Instal semua dependensi:
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+4. Jalankan aplikasi:
+   ```bash
+   npm run dev
+   ```
+   Aplikasi akan berjalan di `http://localhost:5173`.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Menjalankan Pengujian (Testing)
+
+Proyek ini dilengkapi dengan pengujian otomatis untuk memastikan semua fitur berjalan dengan baik sebelum digabungkan ke production.
+
+Menjalankan Unit Test dan Integration Test (menggunakan Vitest):
+```bash
+npm run test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Menjalankan End-to-End (E2E) Test (menggunakan Cypress):
+```bash
+npm run e2e
 ```
+
+Menjalankan Linter untuk mengecek kerapian kode:
+```bash
+npm run lint
+```
+
+## CI/CD Pipeline
+
+Proyek ini telah dikonfigurasi dengan GitHub Actions. Setiap kali ada perubahan kode (Push atau Pull Request) yang mengarah ke branch utama, GitHub akan otomatis menjalankan:
+1. Pengecekan Linter
+2. Pengujian Unit & Integration
+3. Pengujian E2E di browser
+
+Jika seluruh pengujian berhasil (Pass), kode tersebut akan langsung diproses untuk deployment otomatis ke Netlify.
